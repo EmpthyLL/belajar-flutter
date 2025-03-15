@@ -5,38 +5,32 @@ class Gallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            // Add a button or icon to the AppBar actions
-            IconButton(
-              icon: const Icon(Icons.add), // Icon of the button
-              onPressed: () => {Navigator.pushNamed(context, '/')},
-              tooltip: 'Back',
-            ),
-          ],
-          title: const Text('My Gallery'),
-        ),
-        body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Two columns in the grid
-            crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0,
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          // Add a button or icon to the AppBar actions
+          IconButton(
+            icon: const Icon(Icons.add), // Icon of the button
+            onPressed: () => {Navigator.pushNamed(context, '/')},
+            tooltip: 'Back',
           ),
-          itemCount: 10, // Number of items in the grid
-          itemBuilder: (context, index) {
-            return ImageCard(
-              imageUrl:
-                  'assets/img_${index + 1}.jpg', // Replace with your image URL
-              title: 'Image $index', // Title for the image
-            );
-          },
+        ],
+        title: const Text('My Gallery'),
+      ),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Two columns in the grid
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
         ),
+        itemCount: 10, // Number of items in the grid
+        itemBuilder: (context, index) {
+          return ImageCard(
+            imageUrl:
+                'assets/img_${index + 1}.jpg', // Replace with your image URL
+            title: 'Image $index', // Title for the image
+          );
+        },
       ),
     );
   }
