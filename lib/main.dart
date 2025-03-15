@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_p2/gallery.dart';
+import 'package:test_p2/imgDetail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +17,21 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
-        '/gallery': (context) => Gallery(),
+      onGenerateRoute: (settings) {
+        final Uri uri = Uri.parse(settings.name!); // Parse route name
+
+        if (uri.path == '/') {
+          return MaterialPageRoute(
+            builder:
+                (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+          );
+        } else if (uri.path == '/gallery') {
+          return MaterialPageRoute(builder: (context) => Gallery());
+        } else if (uri.pathSegments.length == 2 &&
+            uri.pathSegments.first == 'gallery') {
+          final String id = uri.pathSegments[1]; // Extract ID
+          return MaterialPageRoute(builder: (context) => ImageDetail(id: id));
+        }
       },
     );
   }
@@ -111,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => {Navigator.pushNamed(context, '/gallery')},
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.image),
       ),
     );
   }
