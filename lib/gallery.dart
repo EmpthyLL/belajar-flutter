@@ -68,11 +68,24 @@ class ImageCard extends StatelessWidget {
                   bottom: 8.0,
                   left: 8.0,
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
+                    // padding: const EdgeInsets.only(
+                    //   left: 12.0, // Left padding
+                    //   right: 8.0, // Right padding
+                    //   top: 4.0, // Top padding
+                    //   bottom: 16.0, // Bottom padding
+                    // ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
                     ),
-                    padding: const EdgeInsets.all(8.0),
-                    color: Colors.lightBlue.withValues(alpha: 0.5),
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue.withValues(
+                        alpha: 0.5,
+                      ), // Use withOpacity instead of withValues
+                      borderRadius: BorderRadius.circular(
+                        5.0,
+                      ), // Rounded corners
+                    ),
                     // Optional background for text readability
                     child: Text(
                       "Your Text",
